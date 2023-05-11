@@ -1,0 +1,293 @@
+\documentclass[12pt, a4paper]{article}
+
+\usepackage{blindtext}
+\usepackage{abstract}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{epsfig}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{diagbox}
+\usepackage{booktabs}
+
+\setlength{\oddsidemargin}{0.5cm}
+\setlength{\evensidemargin}{0.5cm}
+\setlength{\topmargin}{-2cm}
+\setlength{\leftmargin}{0.5cm}
+\setlength{\rightmargin}{0.5cm}
+\setlength{\textheight}{24.00cm} 
+
+\parindent 0pt
+\parskip 5pt
+\pagestyle{plain}
+
+
+\title{Interim Report}
+\author{Jingyi LI}
+\date{\today}
+
+\newcommand{\namelistlabel}[1]{\mbox{#1}\hfil}
+\newenvironment{namelist}[1]{%1
+\begin{list}{}
+    {
+        \let\makelabel\namelistlabel
+        \settowidth{\labelwidth}{#1}
+        \setlength{\leftmargin}{1.1\labelwidth}
+    }
+  }{%1
+\end{list}}
+
+
+\begin{document}
+\maketitle
+
+\begin{namelist}{xxxxxxxxxxxx}
+\item[{\bf Research Title:}]
+An Automatic Liver Tumor Detection Method by Ultrasound Robot Based on Deep Learning
+\item[{\bf UEC Supervisor:}]
+	Professor Norihiro KOIZUMI
+	\item[{\bf Other Supervisor or information:}]
+	if applicable
+\end{namelist}
+
+
+\section{Introduction}
+
+Liver tumors are the most common neoplastic disease worldwide, and it is imperative to establish effective methods for lesion screening and to propose a major framework for action to improve liver health. In the past decades, segmentation of liver and liver tumors has been an active research area in the field of medical image processing. With the rapid development of deep learning in recent years, many deep learning works have been proposed for automatic liver segmentation \cite{1,2}. Liver segmentation is similar to image segmentation or object detection, and is an important branch in the field of robotics and computer vision. With the development of deep learning techniques and their excellent performance in medical image processing, medical image segmentation using deep learning techniques has gained great importance. Ultrasound diagnosis is commonly used in the medical field because of its high safety and ease of use. Abdominal ultrasonography is a non-invasive, highly convenient and versatile imaging technique that is commonly used for the diagnosis of liver tumors. In this study, we propose a deep learning-based ultrasound robot human liver tumor automatic detection system, which adopts Couinaud Segmentation of Liver\cite{3} expecting to find an effective method to meet the needs taking into account the specificity of ultrasound images. At the same time, we measured the tumors' size both in diameter and the slicing area, which could help determine the size and nature of tumors.
+
+% What you are doing?  What is the expected final outcome of the project?  What methods have you used (briefly, more detail later)?  Why are you doing this?
+
+% Briefly outline what is in the report.
+
+
+
+\section{Economic, environmental, and social impacts}
+Human vision is a universal sensing system like no other: What fascinates me most is that babies with normal vision eventually all learn to see out of an initial nebulous blur and from their wide range of different visual experiences; such rich integrated sensing and recognition is so well developed that seeing becomes believing and visual reality the reality.
+
+Visual perception presents not just a fascinating computational problem, but more importantly an intelligent solution for large-scale data mining and pattern recognition applications.
+
+In complex socio-technical systems with embedded autonomy, where multiple aspects of human and computer decision-making interact, many applications also have the potential to affect society in positive ways.
+
+Rather than relying on humans to perform rehearsed skills and follow rules, autonomous systems require more abstract knowledge synthesis, judgment, and reasoning from humans. Today's autonomous systems, and even more so in the future, require coordination and teamwork to support each other between humans and machines in order to improve the safety and performance of the system.
+
+The potential deployment of artificial intelligence and intelligent robots raises ethical questions about the impact they may have on human well-being. This requires that AI research aim to understand the structure, content, and purpose of ethical knowledge sufficient to implement ethics in artificial agents.
+
+
+% \begin{itemize}
+% 	\item What is the impact on the development of the principal discipline(s) of the research? 
+% 	\item What is the impact on other disciplines? 
+% 	\item What is the impact on the development of human resources? 
+% 	\item What is the impact on institutional resources that form infrastructure? 
+% 	\item What is the impact on information resources that form infrastructure? 
+% 	\item What is the impact on technology transfer? 
+% 	\item What is the impact on society beyond science and technology?
+% \end{itemize}
+
+% We are looking here for something substantial, but not as complete or comprehensive as we expect for the final report.  We want to see what you are thinking about to see if you are on the right track.
+
+\section{Methodology}
+
+\subsection{Dataset preparation}
+
+Medical ultrasonography is a diagnostic medical imaging technique based on ultrasound. Ultrasound visualizes soft tissues such as muscles and internal organs, including their size, structure and pathological lesions. In this study, the original images were obtained by ultrasonic, and the dataset was produced based on it.
+
+As for the dataset objects, current research is limited to obtaining datasets from human models, Ultrasound Examination Training Phantom“ABDFAN”
+(Fig.1), and manually manipulating the ultrasound probe to capture multi-angle ultrasound images of the liver by applying the right angle of detection at the right location. After pre-processing these raw images, the corresponding weights are obtained by deep learning and the learning quality is evaluated by the prediction results. But for higher credibility and applicability, in the near future, we will try to include the real human liver images, which is necessary to actual medical situation.
+
+\begin{figure}
+	\centering
+	\includegraphics*[height=38mm]{fandom_copy.png}
+	\vspace*{-1mm}
+	\caption{Ultrasound Examination Training Phantom“ABDFAN”.}
+	\label{fig1}
+\end{figure}
+
+According to the Couinaud Segmentation of Liver and part of the twenty-five recommended sections for record\cite{4}, we obtained 4 groups of dataset from different scanning aspects until now and annotated them for training.
+
+\begin{figure}[tbh]
+	\centering
+	\includegraphics*[height=50mm]{couinaud_seg.png}
+	\vspace*{-1mm}
+	\caption{Couinaud Segments.}
+	\label{fig: fig2}
+\end{figure}
+
+
+% How have you been attacking the problem?  What sorts of assumptions have you had to make?  Why do you think those assumptions are valid?  Be specific about what you have done that has worked.  Do not spend even an iota of time saying what you tried and did not work.
+\subsection{Segmentation model}
+
+U-net\cite{5} is a semantic segmentation network, which performs well in medical image segmentation and is the cornerstone of medical image segmentation\cite{6}. Medical image has the following characterictics, especially compared to natural images: 1)The segmentation is usually characterized by blurred boundaries, complex gradients, and large grayscale ranges, so medical image segmentation requires more high-resolution information; 2)The internal structure of the human body is relatively fixed, the distribution of segmentation targets in the human body image is very regular, the semantics are simple and clear, and low-resolution information can be easily located; 3)The amount of data is small because data acquisition of medical imaging is relatively difficult; 4)Interpretability matters, since medical imaging is ultimately an auxiliary doctor's clinical diagnosis.
+
+\begin{figure}[tbh]
+	\centering
+	\includegraphics*[height=38mm]{unet.png}
+	\vspace*{-1mm}
+	\caption{U-net network structure.}
+	\label{fig: fig1}
+\end{figure}
+
+
+YOLACT(stands for You Only Look At CoefficienTs)\cite{7} adaptively learns how to locate instance targets through prototype masks. The number of prototype masks is independent of the number of categories, i.e., each prototype mask contains information across categories, and YOLACT aims to learn a distributed representation so that each instance can get its own mask by linearly combining multiple prototype masks through this representation. By training, each prototype mask learns to abstract some detailed information of the input image, such as edge information, location information, or information about the response to a specific region. YOLACT has three significant advantages: 1)High speed, because of one-stage; 2)High quality of mask, because no repooling-like operations are included; 3)High universality, this idea of generating prototype masks and mask coefficients can be applied to many popular detectors currently available.
+
+\begin{figure}[tbh]
+	\centering
+	\includegraphics*[height=38mm]{yolact.png}
+	\vspace*{-1mm}
+	\caption{YOLACT network structure.}
+	\label{fig: fig1}
+\end{figure}
+
+\subsection{Preprocessing}
+
+We get the images of ABDFAN liver from ultrasound probe, of the number 80 pics each group for 4 groups, then randomly choose 7/8 of them for training, and the rest, 10 pics, as test data.
+% First, we get the images of ABDFAN liver from ultrasound probe, of the number 597 pics, then randomly choose 537 images, for training and the rest, 60 pics, as test data.
+
+In Fig.5, the first set of images are the raw images, the second set of images are the annotated images, in which the red circle indicates the liver, the green circle indicates the tumors, and the third set of images are the masked images. Here, we have completed the preparation of the dataset.
+
+\begin{figure}[tbh]
+	\centering
+	\includegraphics*[height=28mm]{Pre-process.png}
+	\vspace*{-1mm}
+	\caption{Pre-processing.}
+	\label{fig: fig1}
+\end{figure}
+
+\section{Progress to date}
+
+We trained the mentioned dataset using both U-net and YOLACT using a gradual adding and mixing method. In the first training, the first dataset(the 16th step refering to 25-section) is the only input. The second dataset(the 17th step refering to 25-section) was added in for the next training. Though at the same time, the training for only the second group(the 17th) was undertaking. And so on for subsequent dataset.
+
+
+
+\subsection{Results}
+% If you have data to display, display it. If you have a working model, tell us what it is, if applicable.
+
+Take the 16th path(here the first group),which concentrated on the left hepatic lobe lateral segments, as an example: the liver showed is segmented to S1, S2, S3 according to Couinaud's discipline, and also the IVC labeled for more precise location of different sections.
+
+\begin{figure}[tbh]
+	\centering
+	\includegraphics*[height=38mm]{predict_nashi.png}
+	\vspace*{-1mm}
+	\caption{Prediction without tumor(No detection).}
+	\label{fig: fig1}
+\end{figure}
+
+\begin{figure}[tbh]
+	\centering
+	\includegraphics*[height=38mm]{predict_ari.png}
+	\vspace*{-1mm}
+	\caption{Prediction with tumor(Tumor detected and size displayed).}
+	\label{fig: fig1}
+\end{figure}
+
+For the accuracy evaluation, take the first set for example here. The evaluation of YOLACT contains DIce-Loss and IoU(Table.1), while for U-net there is mIoU(Table.2)(To be continue)
+
+\begin{table}[tbh]
+	\centering
+	\fontsize{8}{10}\selectfont 
+	\caption{Mean Dice-Loss and IoU of 16th(YOLACT).}
+	\begin{tabular}{c|ccccc}
+		\toprule
+		\diagbox [width=15em,trim=l] {Evaluation Metrics}{Labels annotated} & S1 & S2 & S3  & IVC & {\bf Tumor} \\
+		\hline
+		Dice & 0.9063 & 0.8299 & 0.9509 & 0.9220 & {\bf 0.8752}  \\
+		IoU & 0.8304 & 0.7413 & 0.9080 & 0.8581 & {\bf 0.7781} \\
+		% C & 7.45 & 6.56 & 6.65 & 6.98 & {\bf 5.78}  \\
+		\bottomrule
+	\end{tabular}\vspace{0cm}
+	\label{tab:Training_sizes}
+\end{table}
+
+\begin{table}[tbh]
+	\centering
+	\fontsize{8}{10}\selectfont 
+	\caption{Mean IoU of 16th(U-net).}
+	\begin{tabular}{c|ccccc}
+		\toprule
+		\diagbox [width=15em,trim=l] {Evaluation Metric}{Labels annotated} & S1 & S2 & S3  & IVC & {\bf Tumor} \\
+		\hline
+		% Dice & 0.9063 & 0.8299 & 0.9509 & 0.9220 & {\bf 0.8752}  \\
+		IoU & 0.90 & 0.78 & 0.81 & 0.86 & {\bf 0.76} \\
+		% C & 7.45 & 6.56 & 6.65 & 6.98 & {\bf 5.78}  \\
+		\bottomrule
+	\end{tabular}\vspace{0cm}
+	\label{tab:Training_sizes}
+\end{table}
+
+% \begin{figure}[tbh]
+% 	\centering
+% 	\includegraphics*[height=38mm]{mIoU.png}
+% 	\vspace*{-1mm}
+% 	\caption{mIoU for segmentation(U-net).}
+% 	\label{fig: fig1}
+% \end{figure}
+
+
+\subsection{Changes/Problems}
+% Provide the following additional information, if applicable.
+
+\begin{itemize}
+	\item Couinaud Segment of Liver adopted.
+	\item Scanning from certain aspects for corresponding sections of liver according to 25-section scanning method.
+	\item Considering about expansion of the dataset and the incorporation of human dataset.
+	\item Real-time platform building
+\end{itemize}
+\begin{figure}[tbh]
+	\centering
+	\includegraphics*[height=38mm]{mIoU.png}
+	\vspace*{-1mm}
+	\caption{mIoU for segmentation(U-net).}
+	\label{fig: fig1}
+\end{figure}
+\section{Plans for the future}
+% Outline your plans for the remainder of the term.
+\begin{itemize}
+
+	\item Considering about expandation of the dataset and the incorporation of human dataset.
+	\item Real-time platform building.
+	\item Adopt YOLOv8 newly released.
+\end{itemize}
+
+\begin{thebibliography}{99} 
+
+	\bibitem{1}Fernandez, J. G. et al., “Exploring automatic liver tumor segmentation using deep learning,” pp.1-8, 2021.
+    
+    \bibitem{2}Hong, Y. et al., “Automatic liver and tumor segmentation based on deep learning and globally optimized refinement,” Applied Mathematics-A Journal of Chinese Universities, vol.36, pp.304-316, 2021.
+
+	\bibitem{3}Couinaud C: Liver Anatomy: Portal (and Suprahepatic) or Biliary Segmentation. Dig Surg 1999;16:459-467. doi: 10.1159/000018770
+
+	\bibitem{4}Okaniwa, S. et al., “Manual for abdominal ultrasound in cancer screening and health checkups,” revised edition (2021). Journal of Medical Ultrasonics, vol.50, pp.5-49, 2023.
+
+	\bibitem{5}Ronneberger, O. et al., “U-Net: Convolutional Networks for Biomedical Image Segmentation,” arXiv.org, 2015.
+
+	\bibitem{6}Shen, Y. et al., “Empirical comparisons of deep learning networks on liver segmentation,” Texas Tech University Scholars, vol.62, pp.1233-1247, 2020.
+
+	\bibitem{7}Bolya, D. et al., “YOLACT: Real-time Instance Segmentation,” arXiv.org, 2019.
+
+
+	% \bibitem{r1}Alalwan, N. et al., “Efficient 3D Deep Learning Model for Medical Image Semantic Segmentation,” Alexandria Engineering Journal, vol.60, pp.1231-1239, 2021.
+    
+    % \bibitem{r2}Zakhari, S., “Bermuda Triangle for the liver: Alcohol, obesity, and viral hepatitis,” Journal of Gastroenterology and Hepatology, vol.28, pp.18-25,  2013.
+    
+    % \bibitem{r3}Campadelli, P. et al., “Liver segmentation from computed tomography scans: A survey and a new algorithm,” Artificial Intelligence in Medicine, vol.45, pp.185-196, 2009.
+    
+    % \bibitem{r4}Lee, J. et al., “Efficient liver segmentation using a level-set method with optimal detection of the initial liver boundary from level-set speed images,” Computer Methods and Programs in Biomedicine, vol.88, pp.26-38, 2007.
+    
+    % \bibitem{r5}Schneider, C. M. et al., “Robot-assisted laparoscopic ultrasonography for hepatic surgery,” Surgery, vol.151, pp.756-762, 2012.
+    
+    % \bibitem{r6}Fernandez, J. G. et al., “Exploring automatic liver tumor segmentation using deep learning,” pp.1-8, 2021.
+    
+    % \bibitem{r7}Hong, Y. et al., “Automatic liver and tumor segmentation based on deep learning and globally optimized refinement,” Applied Mathematics-A Journal of Chinese Universities, vol.36, pp.304-316, 2021.
+    
+    % \bibitem{r8}Kim, Y. et al., “High-Intensity Focused Ultrasound Therapy: an Overview for Radiologists,” Korean Journal of Radiology, vol.9, pp.291-302, 2008.
+
+	% \bibitem{i1}Ronneberger, O. et al., “U-Net: Convolutional Networks for Biomedical Image Segmentation,” arXiv.org, 2015.
+
+	% \bibitem{r9}Shen, Y. et al., “Empirical comparisons of deep learning networks on liver segmentation,” Texas Tech University Scholars, vol.62, pp.1233-1247, 2020. 
+
+	% \bibitem{r10}Dice, L. R., “Measures of the Amount of Ecologic Association Between Species,” Ecology, vol.26, pp.297-302, 1945.
+
+	% \bibitem{i2}Yu, J. et al., “Unitbox: An Advanced Object Detection Network,” ACM Conferences, pp.516-520, 2016.
+	
+
+\end{thebibliography} 
+
+\end{document}

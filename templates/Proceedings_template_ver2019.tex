@@ -1,0 +1,169 @@
+\documentclass [11pt, twocolumn] {article}
+
+%\usepackage[affil-it]{authblk}
+\usepackage{blindtext}
+\usepackage{abstract}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{epsfig}
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+
+\setlength{\textheight}{237mm}
+\setlength{\textwidth}{170mm}
+\setlength{\oddsidemargin}{-5mm}
+\setlength{\topmargin}{-7mm}
+\setlength{\headsep}{10mm} 
+\setlength{\columnsep}{10mm}
+
+\pagestyle{empty}  % Remove the page number
+
+\def \bea{\begin{eqnarray}}
+\def \eea{\end{eqnarray}}
+
+\title{An Automatic Liver Tumor Detection Method by Ultrasound Robot Based on Deep Learning}
+%%%% Capital letters for each words except prepositions and articles in the paper title.
+
+\author{\emph{Jingyi LI} %%%%%% Your name here, CAPITAL letters for the family name.
+	\thanks{The author is supported by JASSO Scholarship.} \\
+	Department of Mechanical \\
+  and Electrical Engineering\\
+  University of Electronic Science\\
+  and Technology of China \\
+   %%%%%Name of your home univ name 
+	Sichuan, China %%%%%City (or province/state) and country of home university
+	\and
+	\emph{Norihiro KOIZUMI} \\ %%% Name of your supervisor at UEC, CAPITAL letters for the family name
+	Department of Mechanical Engineering\\
+  and Intelligent Systems \\
+  The University of Electro-Communications \\
+  Tokyo, Japan}
+
+%%% NO dates are required. Just leave the following date command blank. %%%
+\date{}
+
+\begin{document}
+	
+\twocolumn[
+\begin{@twocolumnfalse}
+\hrule
+\vspace{-.7cm}
+	\maketitle
+\vspace{-.5cm}
+\hrule
+
+\thispagestyle{empty} %%%%%%%%%%%%% add this line to remove the page number on the 1st page
+
+\vspace{0.5cm}
+
+\begin{abstract}
+	Nowadays there is a high incidence of liver disease in humans, and although effective methods exist for detecting liver lesions, differences in physicians' detection practices and the similar physiological characteristics of other organs in the chest make more efficient medical treatments imperative. In the medical field, especially in the treatment of liver lesions, ultrasound is one of the most commonly used, safest and simplest means. And after years of development, medical applications based on the processing of ultrasound images as well as robotics and deep learning have been quite well established. In order to effectively assist physicians in the detection of liver lesions, this study uses deep learning-based image processing to construct a medical application model aimed at liver detection as well as tumor detection, which is clearly represented on the obtained images. A suitable number of images are acquired by the ultrasonic robot, and a dataset is produced based on these images, which is used for training and testing. In the course of the experiments, taking into account the application of the learning model and the evaluation of the resultant data, we finally succeeded in achieving the set goals with good results.
+\end{abstract}
+
+\textbf{Keywords:}
+Liver tumor, Ultrasonic inspection, Deep learning   
+\end{@twocolumnfalse}
+\vspace{0.5cm}
+]
+\saythanks
+
+\thispagestyle{empty} %%%%%%%%%%%%% add this line to remove the page number on the 1st page
+
+\section{Introduction}
+Liver tumor is the most common tumor disease worldwide\cite{r1}, which is caused by reasons including but not limited to the increasing aging population, increasingly widespread unhealthy alcohol consumption, and the epidemic of obesity\cite{r2}, making it imperative that an effective method of screening for lesions and proposing a major framework for action to improve liver health.
+
+Liver and liver tumors segmentation has been an active research area in the medical image processing domain for the last few decades. This is because liver segmentation is a fundamental step before lesion detection in the treatment planning and therapeutic evaluation of liver tumors\cite{r3}. Whereas, the existence of other organs such as the heart, spleen, stomach, and kidney complicate the task of liver segmentation and tumor identification since these organs share identical properties in terms of shape, texture, and intensity values, which makes the segmentation of liver and detection of liver tumors still laborious\cite{r4}. In recent years, many automatic and semi-automatic techniques have been presented in an attempt to establish a robotic system to reliably diagnose and detect liver diseases, specifically liver tumors. For example, Schneider et al\cite{r5} 's study describes and evaluates a novel, robot-assisted laparoscopic ultrasonographic device for hepatic surgery, which offers the opportunity to develop new tools to improve techniques in surgery.
+
+Moreover, the increase in research and development related to robots that are designed to assist in surgery and diagnosis proves the application of various technologies, such as new mechanisms, images processing and display technologies. Obviously, they are important tools in the field of medicine and health care, particularly in image diagnosis.
+
+With the soaring of deep learning in recent year, many deep learning works have been proposed for automatic liver segmentation\cite{r6,r7}. Liver segmentation is analogy to image segmentation or object detection, an important branch in the field of robot and computer vision. With the evolution of deep learning techniques and their exceptional performance in the field of medical image processing, medical image segmentation using deep learning techniques has received a great deal of emphasis.
+
+Furthermore, several reports have been published on machine learning to assess the diagnosis of liver tumors. Also, deep neural networks have become available in the field of imaging diagnostics. In this study, we propose a deep learning-based ultrasound robot human liver tumor automatic detection system, expecting to find an efficient method to meet the needs taking into account the specific nature of ultrasound images.
+
+Ultrasound diagnoses are generally used in medicine because of their high levels of safety and ease of use\cite{r8}. Abdominal ultrasonography is a non-invasive, highly convenient, and versatile imaging technique that is commonly used for liver tumor diagnosis. However, extensive experience in ultrasonography is required for accurate diagnoses because of the need to perform real-time recognition of lesions. From this perspective, the lack of experts in ultrasonography is an urgent issue in the medical field that needs to be addressed, as the absence of specialist and the missing and incorrect diagnoses will have inadequate information and thereby fatal consequences. However, the accuracy of the diagnosis heavily depends on the human visual perception. And the manual segmentation of liver is time-consuming because of the large amount of image data and subjectivity associated with specialist's experience, which can lead to segmentation errors. Hence, we aim to construct a method for the diagnosis of liver tumors.
+
+\section{Methodology}
+Section 2 here and you can add your new section in the same manners.\cite{ref1, ref3, ref5, ref5a, ref6M, ref6D}
+
+\section{Section}
+Add your section.
+ 
+\subsection{Subsection}
+My favourite equations (\ref{E:eqn2}).
+
+\bea
+r^{2}	&= s^{2} + t^{2}				\label{E:eqn1}\\
+2u+1	&= v+w^{\alpha}					\label{E:eqn2}\\
+x		&= \frac{y + z}{\sqrt{s + 2u}}	\label{E:eqn3}
+\eea
+
+
+\section{Results}
+Show your results, graphs and etc. here (as shown in Figure \ref{fig:coffee2}).
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[b]{0.2\linewidth}
+		%\includegraphics[width=\linewidth]{coffee.eps}
+		\caption{}
+		\label{fig:coffee1}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.2\linewidth}
+		%\includegraphics[width=\linewidth]{coffee.eps}
+		\caption{}
+		\label{fig:coffee2}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.2\linewidth}
+		%\includegraphics[width=\linewidth]{coffee.eps}
+		\caption{}
+		\label{fig:coffee3}
+	\end{subfigure}
+	\begin{subfigure}[b]{0.5\linewidth}
+		%\includegraphics[width=\linewidth]{coffee.eps}
+		\caption{}
+		\label{fig:coffee4}
+	\end{subfigure}
+	\caption{The same cup of coffee. (a) Regular with much sugar. (b) Black without sugar and milk. (c) Tea with milk. (d) The coffee king}
+	\label{fig:coffee}
+\end{figure}
+
+
+
+\section{Discussion}
+Discussion here. \blindtext
+
+\begin{figure}
+	\centering
+	%	\vspace{4cm} %%% delete this command after include your own graphic
+	%\includegraphics[width=\linewidth]{coffee.eps}
+	\caption{You will need a lot of coffee later on if you don't start to write your paper right now.}
+	\label{fig:trap}
+\end{figure}
+
+
+\section{Conclusions}
+Conclusions here.
+
+\section{Acknowledgments}
+Space to thank others for their contributions and support to the research or project. Thank the funders (grant, shcolarship).
+
+\begin{thebibliography}{9}
+	
+    \bibitem{r1}Alalwan, N. et al., “Efficient 3D Deep Learning Model for Medical Image Semantic Segmentation,” Alexandria Engineering Journal, vol.60, pp.1231-1239, 2021.
+    
+    \bibitem{r2}Zakhari, S., “Bermuda Triangle for the liver: Alcohol, obesity, and viral hepatitis,” Journal of Gastroenterology and Hepatology, vol.28, pp.18-25,  2013.
+    
+    \bibitem{r3}Campadelli, P. et al., “Liver segmentation from computed tomography scans: A survey and a new algorithm,” Artificial Intelligence in Medicine, vol.45, pp.185-196, 2009.
+    
+    \bibitem{r4}Lee, J. et al., “Efficient liver segmentation using a level-set method with optimal detection of the initial liver boundary from level-set speed images,” Computer Methods and Programs in Biomedicine, vol.88, pp.26-38, 2007.
+    
+    \bibitem{r5}Schneider, C. M. et al., “Robot-assisted laparoscopic ultrasonography for hepatic surgery,” Surgery, vol.151, pp.756-762, 2012.
+    
+    \bibitem{r6}Fernandez, J. G. et al., “Exploring automatic liver tumor segmentation using deep learning,” pp.1-8, 2021.
+    
+    \bibitem{r7}Hong, Y. et al., “Automatic liver and tumor segmentation based on deep learning and globally optimized refinement,” Applied Mathematics-A Journal of Chinese Universities, vol.36, pp.304-316, 2021.
+    
+    \bibitem{r8}Kim, Y. et al., “High-Intensity Focused Ultrasound Therapy: an Overview for Radiologists,” Korean Journal of Radiology, vol.9, pp.291-302, 2008.
+	
+\end{thebibliography}
+
+\end {document}

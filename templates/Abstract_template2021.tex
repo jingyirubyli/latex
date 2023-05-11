@@ -1,0 +1,67 @@
+%&latex
+\documentclass[twocolumn,11pt]{article}
+\setlength{\textheight}{9.3in}
+\setlength{\textwidth}{6.68in}
+\setlength{\oddsidemargin}{-.20in}
+\setlength{\topmargin}{-.25in}
+\setlength{\headsep}{10mm} 
+\pagestyle{myheadings}
+
+\pagenumbering{gobble}
+\usepackage[scale=0.8,bmargin=2cm,footnotesep=1cm]{geometry}
+
+\title{GMM Algorithm for Skin Color Segmentation in Outdoor Environments by Using a Stereo Camera}
+
+\author{ {\em Alejandro LARRAURI}
+   $^{*}$ \\ %%%%% Modify footnote at the bottom, if you are a self-funded student or receive others scholarship
+  Department of Computer Science \\
+  National Polytechnic Institute (IPN) \\
+  Mexico City, Mexico
+\and
+  {\em Masahide KANEKO} \\
+  Department of Mechanical Engineering\\
+  and Intelligent Systems \\
+  The University of Electro-Communications \\
+  Tokyo, Japan
+  }
+
+%%% NO dates are required. Just leave the following date command blank. %%% 
+\date{}
+
+
+\begin{document}
+
+
+
+\twocolumn[
+
+\begin{@twocolumnfalse}
+	\hrule
+	\vspace{-.7cm}
+    \maketitle
+    \vspace{-.5cm}
+    \hrule
+    \vspace{.3cm}
+    \textbf{Keywords:} Gaussian Mixture Model (GMM), Skin Color Segmentation, Chromatic Space, Stereo Camera.
+
+	\vspace{0.5cm}
+
+\begin{abstract}
+
+Ground segmentation is critical for a mobile robot to successfully accomplish its tasks in challenging environments. In this paper, we propose a self-supervised radar-vision classification system that allows an autonomous vehicle, operating in natural terrains, to automatically construct online a visual model of the ground and perform accurate ground segmentation. The system features two main phases: the training phase and the classification phase. The training stage relies on radar measurements to drive the selection of ground patches in the camera images, and learn online the visual appearance of the ground. In the classification stage, the visual model of the ground can be used to perform high level tasks such as image segmentation and terrain classification, as well as to solve radar ambiguities. The proposed method leads to the following main advantages: (a) a self-supervised training of the visual classifier, where the radar allows the vehicle to automatically acquire a set of ground samples, eliminating the need for time-consuming manual labeling; (b) the ground model can be continuously updated during the operation of the vehicle, thus making it feasible the use of the system in long range and long duration navigation applications. This paper details the proposed system and presents the results of experimental tests conducted in the field by using an unmanned vehicle. 
+
+\end{abstract}
+\end{@twocolumnfalse}
+
+\vspace{0.5cm}
+]
+
+%For the self-funding student, delete this footnote
+{
+ \renewcommand{\thefootnote}%
+  {\fnsymbol{footnote}}
+ \footnotetext[1]{The author is supported by JASSO Scholarship.}
+}
+
+
+\end{document}

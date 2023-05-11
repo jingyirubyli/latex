@@ -1,0 +1,261 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{enumitem}
+\usepackage{indentfirst}
+\usepackage{ragged2e}
+\usepackage{array}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\usepackage{amsmath,amssymb}
+\usepackage{breqn}
+\usepackage{graphicx}
+\graphicspath{{images/}}
+\graphicspath{{proposal/}}
+\usepackage{epstopdf}
+\usepackage{subcaption}
+\usepackage{cite}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{multirow}
+\usepackage{float}
+
+\setlist[description]{font=\normalfont\itshape\textbullet\space}
+
+
+\setlength{\topmargin}{-2cm}
+\setlength{\textheight}{25.00cm} 
+
+\parindent 0pt
+\parskip 5pt
+\pagestyle{plain}
+
+
+\title{An Automatic Liver Tumor Detection Method by Ultrasound Robot Based on Deep Learning}
+\author{LI JINGYI}
+
+\newcommand{\namelistlabel}[1]{\mbox{#1}\hfil}
+\newenvironment{namelist}[1]{%1
+	\begin{list}{}
+		{
+			\let\makelabel\namelistlabel
+			\settowidth{\labelwidth}{#1}
+			\setlength{\leftmargin}{1.1\labelwidth}
+		}
+	}{%1
+\end{list}}
+
+
+\begin{document}
+\maketitle
+\pagenumbering{gobble}
+
+
+\pagenumbering{arabic}
+
+
+\section*{Abstract}
+
+\setlength{\parindent}{1em}
+Nowadays there is a high incidence of liver disease in humans, and although effective methods exist for detecting liver lesions, differences in physicians’ detection practices and the similar physiological characteristics of other organs in the chest make more eﬀicient medical treatments imperative. In the medical field, especially in the treatment of liver lesions, ultrasound is one of the most commonly used, safest and simplest means. And after years of development, medical applications based on the processing of ultrasound images as well as robotics and deep learning have been quite well established. In order to effectively assist physicians in the detection of liver lesions, this study uses deep learning-based image processing to construct a medical application model aimed at liver detection as well as tumor detection, which is clearly represented on the obtained images. A suitable number of images are acquired by the ultrasonic robot, and a dataset is produced based on these images, which is used for training and testing. In the course of the experiments, taking into account the application of the learning model and the evaluation of the resultant data, we finally succeeded in achieving the set goals with good results.
+
+\section{Introduction} 
+%% \emph{In this section you should give some background to your research area. What is the problem you are tackling, and why is it worthwhile solving? Who has already done some work in this area, and what have they achieved?}
+
+
+
+\setlength{\parindent}{1em}
+Liver tumor is the most common tumor disease worldwide\cite{r1}, which is caused by reasons including but not limited to the increasing aging population, increasingly widespread unhealthy alcohol consumption, and the epidemic of obesity\cite{r2}, making it imperative that an effective method of screening for lesions and proposing a major framework for action to improve liver health.\\
+
+\setlength{\parindent}{1em}
+Liver and liver tumors segmentation has been an active research area in the medical image processing domain for the last few decades. This is because liver segmentation is a fundamental step before lesion detection in the treatment planning and therapeutic evaluation of liver tumors\cite{r3}. Whereas, the existence of other organs such as the heart, spleen, stomach, and kidney complicate the task of liver segmentation and tumor identification since these organs share identical properties in terms of shape, texture, and intensity values, which makes the segmentation of liver and detection of liver tumors still laborious\cite{r4}. In recent years, many automatic and semi-automatic techniques have been presented in an attempt to establish a robotic system to reliably diagnose and detect liver diseases, specifically liver tumors. For example, Schneider et al\cite{r5} ’s study describes and evaluates a novel, robot-assisted laparoscopic ultrasonographic device for hepatic surgery, which offers the opportunity to develop new tools to improve techniques in surgery.\\
+
+\setlength{\parindent}{1em}
+Moreover, the increase in research and development related to robots that are designed to assist in surgery and diagnosis proves the application of various technologies, such as new mechanisms, images processing and display technologies. Obviously, they are important tools in the field of medicine and health care, particularly in image diagnosis. \\
+
+\setlength{\parindent}{1em}
+With the soaring of deep learning in recent year, many deep learning works have been proposed for automatic liver segmentation\cite{r6,r7}. Liver segmentation is analogy to image segmentation or object detection, an important branch in the field of robot and computer vision. With the evolution of deep learning techniques and their exceptional performance in the field of medical image processing, medical image segmentation using deep learning techniques has received a great deal of emphasis. The details will be discussed in the literature review section.\\
+
+\setlength{\parindent}{1em}
+Furthermore, several reports have been published on machine learning to assess the diagnosis of liver tumors. Also, deep neural networks have become available in the field of imaging diagnostics. In the context, ultrasonography supported by robot will be an ideal device for screening liver lesions, particularly for the early diagnosis of liver cancer. In this study, we propose a deep learning-based ultrasound robot human liver tumor automatic detection system, expecting to find an efficient method to meet the needs taking into account the specific nature of ultrasound images.\\
+
+\setlength{\parindent}{1em}
+Ultrasound diagnoses are generally used in medicine because of their high levels of safety and ease of use\cite{r8}. Abdominal ultrasonography is a non-invasive, highly convenient, and versatile imaging technique that is commonly used for liver tumor diagnosis. However, extensive experience in ultrasonography is required for accurate diagnoses because of the need to perform real-time recognition of lesions. From this perspective, the lack of experts in ultrasonography is an urgent issue in the medical field that needs to be addressed, as the absence of specialist and the missing and incorrect diagnoses will have inadequate information and thereby fatal consequences. However, the accuracy of the diagnosis heavily depends on the human visual perception. And the manual segmentation of liver is time-consuming because of the large amount of image data and subjectivity associated with specialist’s experience, which can lead to segmentation errors. Hence, we aimed to construct robots for the diagnosis of liver tumors.\\
+
+
+
+\section{Objects} 
+
+\setlength{\parindent}{1em}
+In this work, we explore a deep learning-based approach to address automatic segmentation of liver tumor. Based on the classification and diagnosis of liver tumors, this study is divided into two parts. First, the whole liver is cut out from the ultrasound image. Second, label the liver tumors in the images. At the same time, we evaluate the accuracy of the processing results to identify the defects in the processing and explore certain improvement methods.\\
+
+\setlength{\parindent}{1em}
+This article focuses on the classification of ultrasonic images of human liver based on deep learning to further localize liver location and lesion identification, which enriches the theoretical content of deep learning and intelligent medicine at a practical level.In addition, the study of this problem can improve the accuracy of diagnosis of liver diseases and increase the efficiency of medical workers' operations, with the aim of avoiding some tragedies. The results also provide some insight into the development and application of deep learning and intelligent medicine, and on this basis, we look forward to reaching a higher level of intelligent healthcare.
+
+
+
+\section{Literature Review}
+
+\setlength{\parindent}{1em}
+Karlsen et al.\cite{1} concluded that the incidence of liver tumors has increased due to the various reasons mentioned above. Liver surgery is a field in which computer-based operation planning has an enormous impact on the selection of therapeutic strategy. An individual impression of liver tumor location, the structure of the vascular system and the identification of liver segments will be provided by liver operation planning based on beforehand analysis of image data. According to Shen et al.\cite{2}, liver segmentation is an important step before lesion detection and diagnosis, but manually segmenting the liver from medical images is time-consuming. And to improve the efficiency, with the rapid development of deep learning in recent years, many deep learning works have been proposed for automatic liver segmentation. According to Meinzer et al.\cite{3}, the high variability of liver anatomy makes liver resection planning a useful application for computer-aided planning procedures. But which is one of the reasons why it is difficult to correctly segment the liver and locate the lesions is that, according to Rela et al.\cite{4},the tumor boundary and neighboring noncancerous liver tissues are unclear, which contributes to the difficulty in properly segmenting the liver and localizing the lesion. Besides, there are various types of tumor appearance and density of tumor also varies, and for these reasons, tumor segmentation in the liver become a difficult task. Hence, developing an automatic liver tumor segmentation technique has become a challenge for diagnosis and treatment of liver tumors. If successfully developed, it will not only reduce the drawbacks of manual segmentation but also increase the success rate of liver tumor surgery.\\
+
+\setlength{\parindent}{1em}
+According to Razzak et al.\cite{5}, over the years, the success of deep learning in other real-world applications has provided exciting and accurate solutions for medical imaging, and is seen as a key approach for future applications in health care.\\
+
+\setlength{\parindent}{1em}
+According to Fang et al.\cite{6}, nowadays deep learning-based image segmentation can obtain useful results to help image fusion for interventional guidance.
+According to Reddy et al.\cite{7}, a convolutional neural network-based architecture (CNNs) was proposed to accurately classify abdominal organs namely kidney, liver, pancreas, spleen, and urinary bladder.\\
+
+\setlength{\parindent}{1em}
+In the thesis of Gul et al.\cite{8}, they provided an overview of the available deep learning approaches for segmenting the liver and detecting liver tumors as well as evaluate the accuracy.
+Yi et al.\cite{9} proposed the YOLOv5-GS model, which was trained with person dataset which has improved speed and accuracy.\\
+
+\setlength{\parindent}{1em}
+Jiao et al.\cite{10} applied the YOLOv5 algorithm to the intelligent medical care and proposed a new method that combines the YOLOv5 algorithm with the ResNet-50 network, which has a good application effect. As for the declaration of Sirco et al.\cite{11}, ResNet is an efficient network model and their findings demonstrate that the deep learning can be used for segmentation of liver tumors. Also, in the paper by Nishida\cite{12}, it was proved that the performance of the automatic model surpassed that of human, which leads to the conclusion that the automatic method can help prevent human errors in ultrasonography diagnosis.
+
+
+\section{Methodology}
+
+%\emph{In this section you should explain your approach to the research and describe exactly what steps you will take to answer your questions and outline how you intend to go about accomplishing the aims you have set in the previous section. Try to break your grand aims down into small, achievable tasks. Try to estimate how long you will spend on each task, and draw up a timetable for each sub-task.}
+
+
+
+
+\subsubsection*{RUDS(robotic ultrasound diagnostic system)}
+Our robotic ultrasound diagnostic system\cite{13} consists of three robots: an OTR, an RB, and a robotic supporting arm(RSA), as shown in Fig.1.
+In this work, DOF(degrees of freedom) is to obtain the ultrasound images and dataset respectively.
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=12cm]{ruds.png}
+    \caption{RUDS defrees of freedom configuration}
+\end{figure}
+
+
+
+\subsection*{OTR(organ tracking robot)}
+The OTR is tasked with griping the ultrasound inspection probe and enabling movement. To make the OTR-mounted ultrasound probe flexible enough to obtain images in a manner that replicates the technique of a professional physician, the 5-DOFs of the robot were made capable of performing the following types of motions:\\
+
+$X_a$-axis(sliding), $Y_a$-axis(sliding), $Z_a$-axis(compressing), $\theta{xy}$-axis(rocking), and $\theta{z}$-axis(rotation), as shown in Fig.2.\\
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=12cm]{otr.png}
+    \caption{OTR and probe axes motions 
+	($x-axis:±75 mm; y-axis:±75 mm; z-axis:±45 mm;
+	\theta{xy}-axis:±15^\circ; \theta{z}-axis:±100^\circ$)}
+\end{figure}
+
+\begin{figure}[htb]
+    \centering
+    \includegraphics[width=12cm]{dotr.png}
+    \caption{Schematic diagram of each OTR component}
+\end{figure}
+
+
+A pressure sensor is implemented on a spring to measure the contact force between the probe and the patient’s body. There are three reasons why we incorporated this spring in to the OTR tip. The first is to improve the contact stability between the probe and the affected region. The second is to facilitate connecting the ultrasound probe to the pressure sensor and thus to obtain a real-time pressure value between the probe and surface. The third is to ensure patient safety because when the pressure value exceeds the safe range, the ultrasound probe height will be automatically adjusted by the robot to ensure that the probe dose not cause any injury.
+
+\subsection*{Robotic bed and robotic supporting arm}
+The 3-DOFs of the RB are as follows: $X_b$-axis(horizontal motion), $Y_b$-axis(horizontal motion), and $Z_b$-axis(vertical motion). In the experiments of this study, the robotic bed was also used to adjust the height since the probe was applied to the ABDFAN phantom model.
+The 2-DOFs RSA that moves on the $Z_r$-axis and $\theta{r}$ -axis is designed to lift the OTR and adjust its height to the most suitable level.
+
+\subsection*{Image Processing Method}
+
+In this study, we perform image processing using deep learning method YOLOv5 whose algorithm is used to detect liver targets in ultrasound images, and then the detected images with the targets are preprocessed to detect the liver position by dividing the input image using a grid and then calculating the bounding box and class probability for each grid cell. Next, assess the results.\\
+
+
+%\setlength{\parindent}{1em}
+%First, the YOLOv5 algorithm is used to detect liver targets in ultrasound images, and then the detected images with the targets are preprocessed. Next, the processed images are sent to the convolutional neural network ResNet 50 to perform the classification of determining whether it is the liver or not.\\
+
+\setlength{\parindent}{1em}
+In the case of an ultrasound image, this study assumes that more accurate extraction can be realized by taking into account not only the liver and liver tumors but also any surrounding objects, even when the liver shape changes during the detection process.\\
+
+\setlength{\parindent}{1em}
+In this study, the Precision, Recall, and the mean Average Precision(mAP) at $@x$ are used to evaluate the model performance where TP, FP, and FN are the numbers of true positive, false positive, and false negative pixels, respectively.
+
+
+\begin{eqnarray}%AP = \sum\limits_{i=1}^{n-1}(r_{i+1}-r_i)P_{inter}(r_i+1)
+	Precision = \frac{TP}{TP+FP}\\
+	Recall = \frac{TP}{TP+FN}\\
+	mAP = \frac{\sum_{i=1}^{k} AP_i}{k}\\
+	\nonumber
+\end{eqnarray}
+
+In addition, $m$ indicates the average, where $i$ represents the category of the predicted object, $k$ is the number of categories, and $AP_i$ is the average precision of each category. The number $x$ after @ indicates the threshold used to determine the intersection over union(IoU) for positive and negative samples.
+
+\section{Plan of Work and Timeline/Schedule}
+
+\begin{itemize}
+  \item January 15th, 2023: Obtain the training dataset from ultrasound images with liver and liver tumors.
+  \item March 15th, 2023: Use YOLOv5 to train for a liver tumors detector. 
+  \item May 15th, 2023: Data analysis and test the accuracy of the detector.
+  \item July 15th, 2023: Detect liver tumors in real-time for model test.
+  \item August 15st, 2023: Conclude and writing up of research.
+\end{itemize}
+
+
+\section{Equipment, Software and Hardware Requirements}
+
+
+The hardware and software required are as follows.
+\begin{itemize}
+\item Ultrasound Examination Training Phantom “ABDFAN”
+\item Ultrasound probe
+\item Computer (to be determined)
+\item Windows OS
+\item Python, C++
+\item YOLOv5
+\end{itemize}
+
+
+\begin{thebibliography}{99}
+
+\bibitem{r1}N. Alalwan, A. Abozeid, A. A. ElHabshy, and A. Alzahrani, “Efficient 3D Deep Learning Model for Medical Image Semantic Segmentation,” Alexandria Engineering Journal, vol. 60, Art. no. 1, Feb. 2021.
+
+\bibitem{r2}S. Zakhari, “Bermuda Triangle for the liver: Alcohol, obesity, and viral hepatitis,” Journal of Gastroenterology and Hepatology, vol. 28, pp. 18–25, Jul. 2013.
+
+\bibitem{r3}P. Campadelli, E. Casiraghi, and A. Esposito, “Liver segmentation from computed tomography scans: A survey and a new algorithm,” Artificial Intelligence in Medicine, vol. 45, Art. no. 2–3, Feb. 2009.
+
+\bibitem{r4}J. Lee et al., “Efficient liver segmentation using a level-set method with optimal detection of the initial liver boundary from level-set speed images,” Computer Methods and Programs in Biomedicine, vol. 88, Art. no. 1, Oct. 2007.
+
+\bibitem{r5}C. M. Schneider et al., “Robot-assisted laparoscopic ultrasonography for hepatic surgery,” Surgery, vol. 151, Art. no. 5, May. 2012.
+
+\bibitem{r6}J. G. Fernandez, V. Fortunati, and S. Mehrkanoon, “Exploring automatic liver tumor segmentation using deep learning,” Jul. 2021.
+
+\bibitem{r7}Y. Hong, X.-w. Mao, Q.-l. Hui, X.-p. Ouyang, Z.-y. Peng, and D.-x. Kong, “Automatic liver and tumor segmentation based on deep learning and globally optimized refinement,” Applied Mathematics-A Journal of Chinese Universities, vol. 36, Art. no. 2, Jun. 2021.
+
+\bibitem{r8}Y.-s. Kim, H. Rhim, M. J. Choi, H. K. Lim, and D. Choi, “High-Intensity Focused Ultrasound Therapy: an Overview for Radiologists,” Korean Journal of Radiology, vol. 9, Art. no. 4, 2008.
+
+\bibitem{1}T. H. Karlsen et al., “The EASL–Lancet Liver Commission: protecting the next generation of Europeans against liver disease complications and premature mortality,” The Lancet, vol. 399, Art. no. 10319, Jan. 2022. 
+
+\bibitem{2}Y. Shen et al., “Empirical Comparisons of Deep Learning Networks on Liver Segmentation,” Computers, Materials and Continua, vol. 62, Art. no. 3, 2020.
+
+\bibitem{3}H.-P. Meinzer, M. Thorn, and C. E. Cárdenas, “Computerized planning of liver surgery—an overview,” Computers \& Graphics, vol. 26, Art. no. 4, Aug. 2002.
+
+\bibitem{4}M. Rela, N. R. Suryakari and P. R. Reddy, “Liver Tumor Segmentation and Classification: A Systematic Review," 2020 IEEE-HYDCON, 2020.
+
+\bibitem{5}M. I. Razzak, S. Naz, and A. Zaib, “Deep Learning for Medical Image Processing: Overview, Challenges and the Future,” in Lecture Notes in Computational Vision and Biomechanics, Springer International Publishing, 2017.
+
+\bibitem{6}X. Fang, S. Xu, B. J. Wood, and P. Yan, “Deep learning-based liver segmentation for fusion-guided intervention,” International Journal of Computer Assisted Radiology and Surgery, vol. 15, Art. no. 6, Apr. 2020.
+
+\bibitem{7}D. S. Reddy, P. Rajalakshmi, and M. A. Mateen, “A deep learning based approach for classification of abdominal organs using ultrasound images,” Biocybernetics and Biomedical Engineering, vol. 41, Art. no. 2, Apr. 2021.
+
+\bibitem{8}S. Gul, M. S. Khan, A. Bibi, A. Khandakar, M. A. Ayari, and M. E. H. Chowdhury, “Deep learning techniques for liver and liver tumor segmentation: A review,” Computers in Biology and Medicine, vol. 147, p. 105620, Aug. 2022.
+
+\bibitem{9}Li Y, Yin K, Liang J, Wang C, and Yin G (2020) A multi-task joint framework for real-time person search. arXiv preprint arXiv:2012.06418.
+
+\bibitem{10}S. Jiao, T. Miao, and H. Guo, “Image Target Detection Method Using the Yolov5 Algorithm,” in 3D Imaging Technologies—Multidimensional Signal Processing and Deep Learning, Springer Singapore, 2021.
+
+\bibitem{11}A. Sirco, A. Almisreb, N. M. Tahir, and J. Bakri, “Liver Tumour Segmentation based on ResNet Technique,” 2022.
+
+\bibitem{12}N. Nishida, “Artificial intelligence (AI) models for the ultrasonographic diagnosis of liver tumors and comparison of diagnostic accuracies between AI and human experts,” 2022.
+
+\bibitem{13}J. Zhou et al., “A VS ultrasound diagnostic system with kidney image evaluation functions,” International Journal of Computer Assisted Radiology and Surgery, Oct. 2022.
+
+
+
+
+
+
+\end{thebibliography}
+
+
+\end{document}

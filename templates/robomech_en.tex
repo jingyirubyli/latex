@@ -1,0 +1,273 @@
+\ifx\pfmtname\undefined
+\documentclass[a4paper]{article}
+\else
+\documentclass{article}
+\fi
+\usepackage{robomech_en}
+\usepackage[dvipdfmx]{graphicx}
+
+\begin{document}
+\makeatletter
+\title{An Automatic Liver Tumor Detection Method by Ultrasound Robot Based on Deep Learning}
+{}
+%{--Subtitle: Times New Roman, Bold, 12pt--}%Change this blank if you don't have a subtitle.
+{}%keep this blank
+{}%keep this blank
+
+% DO NOT insert [Member / Student Member], if you are an associate academic society member
+\author{ \small
+\begin{tabular}{ll}
+ $\bigcirc$ %& Jingyi LI, Student Member,  Kikai University, daig\_shinj@kikai.ac.jp\\% $\bigcirc$ represents the presenter
+  %& Jiro SHIBUYA, Member, Robomec Electric Corporation\\
+  & Jingyi LI, Student Member, The University of Electro-Communications, 1124800514@qq.com\\
+  & Norihiro KOIZUMI, The University of Electro-Communications\\
+  & Yu NISHIYAMA, The University of Electro-Communications\\
+  & Tomohiro ISHIKAWA, The University of Electro-Communications\\
+  & Kou KORESAWA, The University of Electro-Communications\\
+  & Kazushi NUMATA, Yokohama City University Medical Center\\
+\end{tabular}
+}
+\makeatother
+
+
+\abstract{ \small
+The prevalence of liver disease in humans is high nowadays, and although there are effective methods to detect liver lesions, more effective medical treatments are imperative due to certain factors. In the field of medicine, especially in the treatment of liver lesions, medical applications based on ultrasound processing have become quite sophisticated over the years. To effectively help physicians detect liver lesions, this study uses deep learning-based image processing to construct a model for medical applications targeting liver and tumor detection. A dataset based on ultrasound images was produced for training and testing. During the experiments, we finally succeeded in achieving the set goals considering the application of the learning model and the evaluation of the result data. %[Abstract: Times New Roman, 9pt, 100-150words]
+}
+
+\date{} % No date
+\keywords{Liver tumor, Ultrasonic inspection, Deep learning %... (no more than five words) [Times New Roman, 9pt]
+}
+
+\maketitle
+\thispagestyle{empty}
+\pagestyle{empty}
+
+\small
+\section{Introduction %[Section Title: 10pt, \protect\\ Bold font, Center-aligned]}%===========================
+}
+%Main text: Times New Roman, 9pt, and Line intervals: about 4.2 mm.
+Liver tumor is the most common tumor disease worldwide\cite{r1}, which is caused by reasons including but not limited to the increasing aging population, increasingly widespread unhealthy alcohol consumption, and the epidemic of obesity\cite{r2}, making it imperative that an effective method of screening for lesions and proposing a major framework for action to improve liver health.
+
+Liver and liver tumors segmentation has been an active research area in the medical image processing domain for the last few decades. This is because liver segmentation is a fundamental step before lesion detection in the treatment planning and therapeutic evaluation of liver tumors\cite{r3}. Whereas, the existence of other organs such as the heart, spleen, stomach, and kidney complicate the task of liver segmentation and tumor identification since these organs share identical properties in terms of shape, texture, and intensity values, which makes the segmentation of liver and detection of liver tumors still laborious\cite{r4}. In recent years, many automatic and semi-automatic techniques have been presented in an attempt to establish a robotic system to reliably diagnose and detect liver diseases, specifically liver tumors. For example, Schneider et al\cite{r5} 's study describes and evaluates a novel, robot-assisted laparoscopic ultrasonographic device for hepatic surgery, which offers the opportunity to develop new tools to improve techniques in surgery.
+
+Moreover, the increase in research and development related to robots that are designed to assist in surgery and diagnosis proves the application of various technologies, such as new mechanisms, images processing and display technologies. Obviously, they are important tools in the field of medicine and health care, particularly in image diagnosis.
+
+With the soaring of deep learning in recent year, many deep learning works have been proposed for automatic liver segmentation\cite{r6,r7}. Liver segmentation is analogy to image segmentation or object detection, an important branch in the field of robot and computer vision. With the evolution of deep learning techniques and their exceptional performance in the field of medical image processing, medical image segmentation using deep learning techniques has received a great deal of emphasis.
+
+Furthermore, several reports have been published on machine learning to assess the diagnosis of liver tumors. Also, deep neural networks have become available in the field of imaging diagnostics. In this study, we propose a deep learning-based ultrasound robot human liver tumor automatic detection system, expecting to find an efficient method to meet the needs taking into account the specific nature of ultrasound images.
+
+Ultrasound diagnoses are generally used in medicine because of their high levels of safety and ease of use\cite{r8}. Abdominal ultrasonography is a non-invasive, highly convenient, and versatile imaging technique that is commonly used for liver tumor diagnosis. However, extensive experience in ultrasonography is required for accurate diagnoses because of the need to perform real-time recognition of lesions. From this perspective, the lack of experts in ultrasonography is an urgent issue in the medical field that needs to be addressed, as the absence of specialist and the missing and incorrect diagnoses will have inadequate information and thereby fatal consequences. However, the accuracy of the diagnosis heavily depends on the human visual perception. And the manual segmentation of liver is time-consuming because of the large amount of image data and subjectivity associated with specialist's experience, which can lead to segmentation errors. Hence, we aim to construct a method for the diagnosis of liver tumors.
+
+
+\iffalse
+\subsection{Manuscript requirements [Subsection Title; 9pt, Bold font, Left-aligned]}%-----------
+\begin{itemize}
+	\item Paper size: A4 (210 $\times$ 297 mm)
+	\item Margins: Top and Bottom = 25 mm, Left and Right (title area) = 25 mm, Left and Right (two-column area) = 15 mm, Column separation = 6 mm.
+	\item Font settings: Refer to the \reftab{tbl: table1}.
+	\item Resolution of figures: High resolution image that are more than 300 dpi.
+	\item Captions of figures and tables: “Fig.\# Title of the figure” and “Table \# Title of the table.”
+    \item Axis names: Do not use just variables but show specific words and units for representing the axes.
+	\item Equations: Describe equations at the center of line and specify equation numbers with a right alignment. In texts, show the equation numbers like “\refeqn{eqn: eq1}.”
+	\begin{equation}
+		M\ddot{r}_{str1} + F_{frk} = Mg
+		\label{eqn: eq1}
+	\end{equation}
+
+	\item Unit systems: Use the SI units.
+	\item When you refer literature in the texts,  insert the reference number after the words or sentences referred (For example, the study\cite{Shinjuku98}). If the referred word is a subject or an object, do not use the reference number alone but describe like “The study\cite{Shinjuku98} reports ... .”
+	\item Prefix $\bigcirc$ to the author's name who make a presentation.
+	\item Your manuscript should be converted to a PDF.  Please submit only the PDF. Follow the instruction on the website to submit the manuscript. 
+	\item[] 
+	\item[*] Note that the file size of the PDF must be less than 2 MB, and the page length is 2--4 pages. 
+	\item[*] Do not include the Paper ID, the conference name, and page numbers. 
+\end{itemize}
+
+\begin{table}[tb]
+ \caption{Type size and typefaces for papers}
+ \label{tbl: table1}
+ \centering
+ \footnotesize
+ \begin{tabular}{|p{35mm}|l|l|l|}
+  \hline
+	Contents	&Fonts \\\hline
+	Normal text	&Times New Roman 9pt \\\hline
+	Title	&Times New Roman, bold, 14pt \\\hline
+	Subtitle	&Times New Roman, bold, 12pt \\\hline
+	Authors Names	&Times New Roman 9pt \\\hline
+	Abstract and Keywords	&Times New Roman 9pt \\\hline
+	Section title		&Times New Roman, bold, 10pt \\\hline
+	Subsection title		&Times New Roman, bold, 9pt \\\hline
+	Captions of Figures and Tables	 &Times New Roman 9pt \\\hline
+	References		&Times New Roman 8pt \\
+  \hline
+ \end{tabular}
+\end{table}
+
+\begin{figure}[tbh]
+ \centering
+  \includegraphics[height=38mm]{fig1.eps}
+  \vspace*{-4mm}
+  \caption{Tensile stress-strain diagram}
+  \label{fig: fig1}
+\end{figure}
+\fi
+
+\section{Methods %[Section Title: 10pt, \protect\\ Bold font, Center-aligned]}%===========================
+}
+
+\subsection{Dataset preparation %[Subsection Title; 9pt, Bold font, Left-aligned]
+}%-----------
+
+Medical ultrasonography is a diagnostic medical imaging technique based on ultrasound. Ultrasound visualizes soft tissues such as muscles and internal organs, including their size, structure and pathological lesions.In this study, the original images were obtained by ultrasonic, and the dataset was produced based on it.
+
+As for the dataset objects, current research is limited to obtaining datasets from human models, Ultrasound Examination Training Phantom“ABDFAN”(Fig.1), and manually manipulating the ultrasound probe to capture multi-angle ultrasound images of the liver by applying the right angle of detection at the right location. After pre-processing these raw images, the corresponding weights are obtained by deep learning and the learning quality is evaluated by the prediction results. But for higher credibility and applicability, in the near future, we will try to include the real human liver images, which is necessary to actual medical situation.
+
+\begin{figure}
+	\centering
+	\includegraphics*[height=38mm]{fandom.png}
+	\vspace*{-4mm}
+	\caption{Ultrasound Examination Training Phantom“ABDFAN”.}
+	\label{fig: fig1}
+\end{figure}
+
+\subsection{Segmentation model %[Subsection Title; 9pt, Bold font, Left-aligned]
+}%-----------
+
+U-net\cite{i1} is a semantic segmentation network, which performs well in medical image segmentation and is the cornerstone of medical image segmentation\cite{r9}. Medical image has the following characterictics, especially compared to natural images: 1)The segmentation is usually characterized by blurred boundaries, complex gradients, and large grayscale ranges, so medical image segmentation requires more high-resolution information; 2)The internal structure of the human body is relatively fixed, the distribution of segmentation targets in the human body image is very regular, the semantics are simple and clear, and low-resolution information can be easily located; 3)The amount of data is small because data acquisition of medical imaging is relatively difficult; 4)Interpretability matters, since medical imaging is ultimately an auxiliary doctor's clinical diagnosis. 
+
+
+The U-net structure combines the underlying information with the top-level information, and eliminates the problem of insufficient information when upsampling by downsampling the low-resolution information several times. Its underlying features are important for model training of small medical image datasets. This is because the bottom layer information can provide contextual semantic information of segmented targets throughout the image, which can be helpful for object classification. As showed in Fig.2, U-net's encoder downsamples 4 times, a total of 16 times downsampling, symmetrically, its decoder also upsamples 4 times accordingly, and restores the high-level semantic feature map obtained by the encoder to the resolution of the original image. U-net ensure the final restored feature map the integration of more low-level features, and also the integration of features of different scales, so that multi-scale prediction and deep supervision can be performed. The 4 times of upsampling also makes the segmentation map recover information such as edges more finely. U-net combines low-resolution information which aims at providing the basis for accurate segmentation and positioning, which is perfect for medical image segmentation. In this study, we perform image processing using deep learning method U-net.
+
+
+In the case of an ultrasound image, this study assumes that more accurate extraction can be realized by taking into account not only the liver and liver tumors but also any surrounding objects, even when the liver shape changes during the detection process.
+
+\begin{figure}
+	\centering
+	\includegraphics*[height=38mm]{unet.png}
+	\vspace*{-4mm}
+	\caption{U-net network structure.}
+	\label{fig: fig1}
+\end{figure}
+
+
+\begin{figure}
+	\centering
+	\includegraphics*[height=28mm]{Pre-process.png}
+	\vspace*{-4mm}
+	\caption{Preprocessing.}
+	\label{fig: fig1}
+\end{figure}
+
+
+\section{Experiment}
+
+\subsection{Preprocessing}
+
+First, we get the images of ABDFAN liver from ultrasound probe, of the number 597 pics, then randomly choose 537 images,  for training and the rest, 60 pics, as test data.
+
+
+In Fig.3, the first set of images are the raw images, the second set of images are the annotated images, in which the red circle indicates the liver, the green circle indicates the tumors, and the third set of images are the masked images. Here, we have completed the preparation of the dataset.
+
+\subsection{Equipment and settings}
+
+The experiment runs on Windows 10, NVIDIA GeForce GTX 1080. All deep learning approaches are developed based on Pytorch 1.7.0. The resolution of the US images is 480 $ \times $ 480.
+
+Due to the characteristics of medical images, some slices of medical images may be tangent to the boundary of the target organ, and the area of the tangent part is very small, so it will lead to low contrast and greatly affect the accuracy of segmentation. Dice Loss can mitigate the negative effects of foreground background imbalance in the images. So we use dice as the loss function\cite{r10}. The dice loss is converted from the dice coefficients, which can measure the similarity of the automatic segmentation results to the ground truth.
+
+\begin{equation}
+	Dice \ coefficient = \frac{2|X \cap Y|}{|X|+|Y|}
+	\label{eqn: eq1}
+\end{equation}
+
+For semantic segmentation, X presents the ground truth while Y presents the prediction.
+
+\begin{equation}
+	Dice \ loss = 1 - \frac{2|X \cap Y|}{|X|+|Y|}
+	\label{eqn: eq1}
+\end{equation}
+
+Intersection over Union (IoU)\cite{i2} is a pixel-based evaluation criterion that is commonly used to evaluate segmentation performance. In order to enable IoU to be used to measure object detection of arbitrary size and shape, we need: 1)Ground truth (the approximate range of objects to be detected is artificially marked in the training set images); 2)the range of results derived by our algorithm. That is, this criterion is used to measure the correlation between true and predicted, and the higher the correlation, the higher the value.
+
+\begin{equation}
+	IoU = \frac{target \cap prediction|}{target \cup prediction}
+	\label{eqn: eq1}
+\end{equation}
+
+\subsection{Experimental results}
+
+Fig.4 is an image from the predicted outcome group, where the red part is the liver prediction and the yellow part is the tumor prediction. Although the results shown in this image appear to be good, when evaluated in terms of the output set as a whole, the edges of the predicted values sometimes reflect errors that manifest as false detections. The dice loss curves are shown in Fig.5 while the mIoU curve is shown in Fig.6.
+
+\begin{figure}
+	\centering
+	\includegraphics*[height=28mm]{exp3-pic.png}
+	\vspace*{-4mm}
+	\caption{Predicted result.}
+	\label{fig: fig1}
+\end{figure}
+
+As the epoch of training iterations increases, the dice loss value gradually converges to 0.028 and the average IoU ratio converges to 80.87. In the case of many training programs, this is not a very desirable number.  The reason for this is that not every image in the dataset is labeled, which traces back to the fact that not all images in the medical image dataset contain exactly the useful information needed for that experiment. The quality of the results was degraded because of the presence of individual invalid images.
+
+
+\section{Discussion}
+
+Here we studied the performance of U-net on liver and tumor segmentation. We all know that many papers on medical image segmentation are improved by U-net, which shows that U-net has important position in this field. U-net adopts a different strategy in the up-sampling stage, which concatenates the encoder's feature map to the up-sampling feature map in each stage to form a thicker feature. The network structure of U-net has a high practicality and is able to learn from relatively small datasets. That's why it has been successfully applied in medical image segmentation. 
+The experiment results showed that the accuracy and the efficiency of U-net is living up to expectations.
+Although there are important discoveries revealed by the study here, there are also limitations. First, the dataset until now is made by the human model, which didn't include the real human liver data. However, considering the practical applicability, it is necessary to cover human data. We will implement this in a subsequent study. Secondly, the model used is relatively homogeneous. We consider the use of multiple models with appropriate comparisons to improve learning efficiency in cross-sectional comparisons, thus further enhancing utility. There is the possibility of continued optimization in terms of parameter settings. Although the direction of adjustment is still somewhat vague, it is clear that there is also the possibility of improvement if some attempts are made. Besides, based on the effects of invalid data mentioned in the previous section, we consider optimizing the dataset, condensing it to obtain a dataset that contains almost every image with valid data needed for the experiment, and performing the same experiment on top of it, thus removing the undesirable effects.
+
+\begin{figure}
+	\centering
+	\includegraphics*[height=38mm]{epoch_loss.png}
+	\vspace*{-4mm}
+	\caption{Total Dice Loss.}
+	\label{fig: fig1}
+\end{figure}
+
+\begin{figure}
+	\centering
+	\includegraphics*[height=38mm]{epoch_miou.png}
+	\vspace*{-4mm}
+	\caption{Train mIoU.}
+	\label{fig: fig1}
+\end{figure}
+
+
+\section{Conclusion}
+
+In this work, we have proposed a method that realize the liver and its tumors segmentation, and evaluated its accuracy. For this purpose, we used U-net which has proven to have good performance in medical image processing to build the method.
+
+As a future work, the method can be modified to match the need of medical image processing, including but not limited to the professionalism of medical issues such as the determination of the shape of the liver and the correct segmentation of the tumor label according to the medical science, learning based on the analysis of data that reaches a sufficiently diverse sample and so on. This is very much the key component in future attempts to overcome those ideas.
+
+
+\footnotesize
+\begin{thebibliography}{99}
+
+    \bibitem{r1}Alalwan, N. et al., “Efficient 3D Deep Learning Model for Medical Image Semantic Segmentation,” Alexandria Engineering Journal, vol.60, pp.1231-1239, 2021.
+    
+    \bibitem{r2}Zakhari, S., “Bermuda Triangle for the liver: Alcohol, obesity, and viral hepatitis,” Journal of Gastroenterology and Hepatology, vol.28, pp.18-25,  2013.
+    
+    \bibitem{r3}Campadelli, P. et al., “Liver segmentation from computed tomography scans: A survey and a new algorithm,” Artificial Intelligence in Medicine, vol.45, pp.185-196, 2009.
+    
+    \bibitem{r4}Lee, J. et al., “Efficient liver segmentation using a level-set method with optimal detection of the initial liver boundary from level-set speed images,” Computer Methods and Programs in Biomedicine, vol.88, pp.26-38, 2007.
+    
+    \bibitem{r5}Schneider, C. M. et al., “Robot-assisted laparoscopic ultrasonography for hepatic surgery,” Surgery, vol.151, pp.756-762, 2012.
+    
+    \bibitem{r6}Fernandez, J. G. et al., “Exploring automatic liver tumor segmentation using deep learning,” pp.1-8, 2021.
+    
+    \bibitem{r7}Hong, Y. et al., “Automatic liver and tumor segmentation based on deep learning and globally optimized refinement,” Applied Mathematics-A Journal of Chinese Universities, vol.36, pp.304-316, 2021.
+    
+    \bibitem{r8}Kim, Y. et al., “High-Intensity Focused Ultrasound Therapy: an Overview for Radiologists,” Korean Journal of Radiology, vol.9, pp.291-302, 2008.
+
+	\bibitem{i1}Ronneberger, O. et al., “U-Net: Convolutional Networks for Biomedical Image Segmentation,” arXiv.org, 2015.
+
+	\bibitem{r9}Shen, Y. et al., “Empirical comparisons of deep learning networks on liver segmentation,” Texas Tech University Scholars, vol.62, pp.1233-1247, 2020. 
+
+	\bibitem{r10}Dice, L. R., “Measures of the Amount of Ecologic Association Between Species,” Ecology, vol.26, pp.297-302, 1945.
+
+	\bibitem{i2}Yu, J. et al., “Unitbox: An Advanced Object Detection Network,” ACM Conferences, pp.516-520, 2016.
+
+
+\end{thebibliography}
+
+\normalsize
+\end{document}
